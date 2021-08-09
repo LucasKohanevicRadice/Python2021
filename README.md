@@ -1,7 +1,7 @@
 # Python2021
 
 FIN
-Tässä ovat kaikki tekemäni tehtävät suorittamaltani MOOC oppimisalustan, ohjelmoinnin perusteet- ja jatkokurssilta. 
+Tässä ovat kaikki tekemäni tehtävät suorittamiltani MOOC oppimisalustan, ohjelmoinnin perusteet- ja jatkokurssilta. 
 
 ENG
 Here are all of the assignments I have done in the python basics and python advanced course. I have completed both of the courses succesfully. I did the courses on the learning platform MOOC.fi (Massive Online Open Courses run by the university of Helsinki).
