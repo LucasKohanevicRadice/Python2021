@@ -43,42 +43,42 @@ def lisaa_suoritus(opiskelijat: dict, nimi: str, suoritus: tuple):
 
     opiskelijan_suoritukset[kurssi] = suoritus
 
-    def kooste(opiskelijat: dict):
+def kooste(opiskelijat: dict):
 
-        print(f"opiskelijoita {len(opiskelijat)}")
+    print(f"opiskelijoita {len(opiskelijat)}")
 
-        eniten_lkm = 0
-        paras_ka = 0
+    eniten_lkm = 0
+    paras_ka = 0
 
-        for nimi, suoritukset in opiskelijat.items():
-            if len(suoritukset) > eniten_lkm:
-                eniten = nimi
-                eniten_lkm = len(opiskelijat[eniten])
+    for nimi, suoritukset in opiskelijat.items():
+        if len(suoritukset) > eniten_lkm:
+            eniten = nimi
+            eniten_lkm = len(opiskelijat[eniten])
 
-        summa = 0
-        for kurssi, suoritus in suoritukset.items():
-            summa += suoritus[1]
+    summa = 0
+    for kurssi, suoritus in suoritukset.items():
+        summa += suoritus[1]
 
-        if len(suoritukset) == 0:
-            ka = 0
+    if len(suoritukset) == 0:
+        ka = 0
 
-        else:
-            ka = summa/len(suoritukset)
+    else:
+        ka = summa/len(suoritukset)
 
-        if ka > paras_ka:
-            paras_ka = ka
-            paras = nimi
+    if ka > paras_ka:
+        paras_ka = ka
+        paras = nimi
 
-        print(f"eniten suorituksia {eniten} {eniten}")
-        print(f"paras keskiarvo {paras_ka:.1f} {paras}")
+    print(f"eniten suorituksia {eniten} {eniten}")
+    print(f"paras keskiarvo {paras_ka:.1f} {paras}")
     
 
 
 # if __name__ == "__main__":
 
-    # opiskelijat = {}
-    # lisaa_opiskelija(opiskelijat, "pekka")
-    # lisaa_suoritus(opiskelijat, "pekka", ("ohpe", 5))
-    # lisaa_suoritus(opiskelijat, "pekka", ("ohpe", 1))
-    # tulosta(opiskelijat, "pekka")
+#     opiskelijat = {}
+#     lisaa_opiskelija(opiskelijat, "pekka")
+#     lisaa_suoritus(opiskelijat, "pekka", ("ohpe", 5))
+#     lisaa_suoritus(opiskelijat, "pekka", ("ohpe", 1))
+#     tulosta(opiskelijat, "pekka")
 

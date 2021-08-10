@@ -30,15 +30,6 @@ class Tavara:
 
 
 
-kirja = Tavara("aapinen", 2)
-puhelin = Tavara("Nokia 3310", 1)
-tiiliskivi = Tavara("Brickweed", 4)
-leipa = Tavara("BRÖDDIS", 1)
-juoma = Tavara("ISO KOKIS", 2)
-print(kirja.paino)
-print(kirja.nimi)
-#   WÖRKKII
-
 
 
 
@@ -65,7 +56,7 @@ class Matkalaukku:
         else:
             self.__current_paino += tavara.paino
             self.__tavara_lkm += 1
-            self.__tavarat.append(f"{tavara.nimi}, {tavara.paino} kg")
+            self.__tavarat.append(f"{tavara.nimi} ({tavara.paino} kg)")
     
     @property
     def paino(self):
@@ -168,42 +159,62 @@ class Lastiruuma:
         pass
 
 
-matkalaukku = Matkalaukku(10)
-
-matkalaukku.lisaa_tavara(kirja)
-print(matkalaukku)
-
-matkalaukku.lisaa_tavara(puhelin)
-print(matkalaukku)
-
-matkalaukku.lisaa_tavara(tiiliskivi)
-print(matkalaukku)
-
-matkalaukku.lisaa_tavara(juoma)
-print(matkalaukku)
-
-matkalaukku.lisaa_tavara(leipa)
-matkalaukku.tulosta_tavarat()
-
-print(matkalaukku.raskain_tavara())
-
-ruuma = Lastiruuma(1000)
-
-ruuma.lisaa_matkalaukku(matkalaukku)
-print(ruuma)
-
-matkalaukku_v2 = Matkalaukku(10)
-
-matkalaukku_v2.lisaa_tavara(kirja)
-matkalaukku_v2.lisaa_tavara(puhelin)
-matkalaukku_v2.lisaa_tavara(tiiliskivi)
-matkalaukku_v2.lisaa_tavara(leipa)
-
-print(matkalaukku_v2)
-
-ruuma.lisaa_matkalaukku(matkalaukku_v2)
-print(ruuma)
-
-ruuma.tulosta_tavarat()
 
 
+
+
+# kirja = Tavara("aapinen", 2)
+# puhelin = Tavara("Nokia 3310", 1)
+# tiiliskivi = Tavara("Brick", 4)
+# leipa = Tavara("BRÖDDIS", 1)
+# juoma = Tavara("ISO KOKIS", 2)
+# print(kirja.paino)
+# print(kirja.nimi)
+
+
+# matkalaukku = Matkalaukku(10)
+
+# matkalaukku.lisaa_tavara(kirja)
+# print(matkalaukku)
+
+# matkalaukku.lisaa_tavara(puhelin)
+# print(matkalaukku)
+
+# matkalaukku.lisaa_tavara(tiiliskivi)
+# print(matkalaukku)
+
+# matkalaukku.lisaa_tavara(juoma)
+# print(matkalaukku)
+
+# matkalaukku.lisaa_tavara(leipa)
+# matkalaukku.tulosta_tavarat()
+
+# print(matkalaukku.raskain_tavara())
+
+# ruuma = Lastiruuma(1000)
+
+# ruuma.lisaa_matkalaukku(matkalaukku)
+# print(ruuma)
+
+# matkalaukku_v2 = Matkalaukku(10)
+
+# matkalaukku_v2.lisaa_tavara(kirja)
+# matkalaukku_v2.lisaa_tavara(puhelin)
+# matkalaukku_v2.lisaa_tavara(tiiliskivi)
+# matkalaukku_v2.lisaa_tavara(leipa)
+
+# print(matkalaukku_v2)
+
+# ruuma.lisaa_matkalaukku(matkalaukku_v2)
+# print(ruuma)
+
+# ruuma.tulosta_tavarat()
+
+kirja = Tavara("Aapiskukko", 2)
+puhelin = Tavara("Nokia 3210", 1)
+
+print("Kirjan nimi:", kirja.nimi())
+print("Kirjan paino:", kirja.paino())
+
+print("Kirja:", kirja)
+print("Puhelin:", puhelin)

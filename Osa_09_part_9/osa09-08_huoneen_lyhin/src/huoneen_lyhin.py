@@ -18,7 +18,7 @@ class Huone:
 
     def lisaa(self,henkilo: Henkilo):
 
-        self.hlo_lista.append(henkilo)
+        self.hlo_lista.append(henkilo) 
     
     def on_tyhja(self):
 

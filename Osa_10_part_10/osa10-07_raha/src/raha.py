@@ -1,6 +1,4 @@
-# TEE RATKAISUSI TÄHÄN:
-# TEE RATKAISUSI TÄHÄN:
-
+# Tässä tehtävässä käydään pythonissa valmiina olevia vertailumetodeja.
 
 
 class Raha:

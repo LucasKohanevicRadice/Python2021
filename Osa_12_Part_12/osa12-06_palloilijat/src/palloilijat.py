@@ -1,3 +1,7 @@
+#   Tässä kappaleessa käytiin läpi funktionaalista ohjelmointia. Tarkoituksena oli käyttää funktioita funktioiden sisällä.
+#   Sisempien funktioitten paluuarvot toimivat määrittelyehtoina ulomman funktion paluuarvoille.
+
+
 class Palloilija:
     def __init__(self, nimi: str, pelinumero: int, maalit: int, syotot: int, minuutit: int):
         self.nimi = nimi
