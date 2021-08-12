@@ -1,7 +1,4 @@
-
-#   Tehtävänä oli luoda luokka "Huone", jonne voi lisätä henkilöitä, hakea huoneessa olevien henkilöitten tiedot ja poistaa lyhimmän henkilön
-
-
+# TEE RATKAISUSI TÄHÄN:
 class Henkilo:
     def __init__(self, nimi: str, pituus: int):
         self.nimi = nimi
