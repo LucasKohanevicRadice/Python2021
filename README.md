@@ -1,9 +1,9 @@
 # Python2021
 
 FIN
-Tässä ovat kaikki tekemäni tehtävät suorittamiltani MOOC oppimisalustan, ohjelmoinnin perusteet- ja jatkokurssilta. Oleellisimmat tehtävät joista näkee parhaiten taitotasoni pythonin kanssa kopioin "Top_picks" kansioon.
+Tässä ovat kaikki tekemäni tehtävät suorittamiltani MOOC oppimisalustan, ohjelmoinnin perusteet- ja jatkokursseilta. Oleellisimmat tehtävät joista näkee parhaiten taitotasoni pythonin kanssa kopioin "Top_picks" kansioon.
 
-Minun kirjoittamat koodit löytyvät tehtävien src kansioista. Ennen koodien katsomista suosittelen katsomaan descriptions.md kansion, josta löytyy linkit koodin tehtävänantoihin. Ei tarvitse arvailla kirjoitetun koodin toimivuuden tarkoitusta sitten.
+Minun kirjoittamat koodit löytyvät tehtävien src kansioista. Ennen koodien katsomista suosittelen vahvasti katsomaan descriptions.md kansion, josta löytyy linkit koodin tehtävänantoihin. 
 
 
 
