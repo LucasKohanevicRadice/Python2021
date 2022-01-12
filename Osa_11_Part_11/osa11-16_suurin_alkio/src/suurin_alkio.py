@@ -1,4 +1,8 @@
-# TEE RATKAISUSI TÄHÄN:
+#   Tehtävänä oli kirjoittaa funktio suurin_alkio, joka saa parametrikseen binääripuun juurialkion.
+#   Funktio palauttaa puun suurimman alkion. Puun arvot käytiin läpi rekursiivisesti.
+
+
+
 class Alkio:
     """ Luokka mallintaa yhtä alkiota binääripuussa """
     def __init__(self, arvo, vasen_lapsi:'Alkio' = None, oikea_lapsi:'Alkio' = None):

@@ -6,7 +6,7 @@ class Henkilo:
     def __init__(self, nimi: str, ika: int, pituus: int, paino: int):
         self.nimi = nimi
         self.ika = ika
-        self.pituus = pituus
+        self.pituus = pituus  
         self.paino = paino
 
 class Kasvatuslaitos:

@@ -1,4 +1,5 @@
-# tee ratkaisusi tänne
+#   Tehtävänanto tähän tehtävään löytyy osoitteesta https://ohjelmointi-21.mooc.fi/osa-12/4-saannolliset-lausekkeet
+#   Tehtävän nimi on Tilastot ojennukseen.
 
 import json
 
