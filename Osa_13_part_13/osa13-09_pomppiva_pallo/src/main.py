@@ -69,4 +69,4 @@ while True:
         suuntax = -suuntax
         suuntay = suuntay
 
-    kello.tick(1000)
+    kello.tick(300)
