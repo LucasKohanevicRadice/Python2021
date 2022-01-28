@@ -13,7 +13,7 @@ pisteet = 0
 
 fontti = pygame.font.SysFont("Arial", 24)
 pisteteksti = fontti.render(f"Pisteet: {pisteet}", True, (255,0,0))
-häviöteksti = fontti.render("You're an absolute fucking disappointment", True, (255,0,0))
+häviöteksti = fontti.render("GAME OVER", True, (255,0,0))
 
 
 
