@@ -1,5 +1,6 @@
 
 
+from operator import truediv
 import pygame
 import random
 from pygame.constants import K_RIGHT
@@ -12,10 +13,8 @@ robo = pygame.image.load("robo.png")
 pisteet = 0
 
 fontti = pygame.font.SysFont("Arial", 24)
+
 pisteteksti = fontti.render(f"Pisteet: {pisteet}", True, (255,0,0))
-häviöteksti = fontti.render("GAME OVER", True, (255,0,0))
-
-
 
 asteroidi = pygame.image.load("kivi.png")
 asteroidi2 = pygame.image.load("kivi.png")
@@ -23,13 +22,8 @@ asteroidi3 = pygame.image.load("kivi.png")
 asteroidi4 = pygame.image.load("kivi.png")
 asteroidi5 = pygame.image.load("kivi.png")
 
-asteroidivauhti = 1
+asteroidivauhti = 1.5
 robovauhti = 6
-# asteroidivauhti2 = 1
-# asteroidivauhti3 = 1
-# asteroidivauhti4 = 1
-# asteroidivauhti5 = 1
-
 
 
 randomy = [-20,-40,-60,-100,-140,-180,-200]
@@ -48,12 +42,16 @@ asteroidi_y4 = random.choice(randomy)
 asteroidi_x5 = random.randint(0, 480-asteroidi.get_width())
 asteroidi_y5 = random.choice(randomy)
 
+
+musta = (0,0,0)
+punainen = (255,0,0)
+colourOfDestruction = musta
+
+
 kello = pygame.time.Clock()
 
 oikealle = False
 vasemmalle = False
-
-
 
 
 while True:
@@ -61,7 +59,6 @@ while True:
 
     for tapahtuma in pygame.event.get():
 
-        # naytto.blit(asteroidi, (asteroidi_x,asteroidi_y))
 
         if tapahtuma.type == pygame.KEYDOWN:
 
@@ -88,9 +85,11 @@ while True:
     if vasemmalle and robo_x >= 0:
         robo_x -= robovauhti
 
-    naytto.fill((0,0,0))
+    häviöteksti = fontti.render("GAME OVER", True, colourOfDestruction)
 
-    naytto.blit(pisteteksti,(550, 20))
+    naytto.fill((0,0,0))
+    naytto.blit(häviöteksti,(260, 200))
+    naytto.blit(pisteteksti,(530, 40))
     naytto.blit(robo, (robo_x,robo_y))
 
     naytto.blit(asteroidi, (asteroidi_x,asteroidi_y))
@@ -115,9 +114,8 @@ while True:
     
     elif asteroidi_y >= 480:
         
-        naytto.blit(häviöteksti,(600, 240))
+        colourOfDestruction = punainen
         asteroidi_y  = -50
-        asteroidivauhti = 0
         robovauhti = 0
         
     
@@ -130,9 +128,8 @@ while True:
     
     elif asteroidi_y2 >= 480:
         
-        naytto.blit(häviöteksti,(600, 240))
+        colourOfDestruction = punainen
         asteroidi_y2  = -50
-        asteroidivauhti = 0
         robovauhti = 0
         
     
@@ -144,10 +141,9 @@ while True:
         pisteteksti = fontti.render(f"Pisteet: {pisteet}", True, (255,0,0))
     
     elif asteroidi_y3 >= 480:
-        
-        naytto.blit(häviöteksti,(600, 240))
+
+        colourOfDestruction = punainen
         asteroidi_y3  = -50
-        asteroidivauhti = 0
         robovauhti = 0
         
     
@@ -160,9 +156,7 @@ while True:
     
     elif asteroidi_y4 >= 480:
         
-        naytto.blit(häviöteksti,(600, 240))
-        asteroidi_y4  = -50
-        asteroidivauhti = 0
+        colourOfDestruction = punainen
         robovauhti = 0
         
     
@@ -175,10 +169,9 @@ while True:
     
 
     elif asteroidi_y5 >= 480:
-        
-        naytto.blit(häviöteksti,(600, 240))
+
+        colourOfDestruction = punainen
         asteroidi_y5  = -50
-        asteroidivauhti = 0
         robovauhti = 0
         
 
@@ -188,12 +181,3 @@ while True:
     kello.tick(100)
 
     pygame.display.flip()
-
-
-
-    # naytto.blit(roidi, (asteroidi_x,asteroidi_y))
-    # asteroidi_x = asteroidi_x
-    # asteroidi_y += 2
-    # asteroidilista.append(roidi)
-    # pygame.display.flip()
-    # kello.tick(100)

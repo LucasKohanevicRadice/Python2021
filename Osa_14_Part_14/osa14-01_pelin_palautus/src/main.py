@@ -1,5 +1,8 @@
 # TEE PELI TÄHÄN
 
+# from curses import KEY_DOWN
+from sre_constants import ANY, ANY_ALL
+from winreg import KEY_ALL_ACCESS
 import pygame
 from pygame.constants import K_DOWN, K_ESCAPE, K_LEFT, K_RIGHT, K_SPACE, K_UP
 import random
@@ -9,8 +12,8 @@ class hirvio:
 
     def __init__(self) -> None:
 
-        self.hirvio = pygame.image.load("hirvio.png")
-        self.lattia = pygame.image.load("lattia.png")
+        self.hirvio = pygame.image.load("Osa_14_Part_14\osa14-01_pelin_palautus\src\monstis.png")
+        self.lattia = pygame.image.load("Osa_14_Part_14\osa14-01_pelin_palautus\src\lattia.png")
 
         self.naytonkorkeus = self.lattia.get_height()*20
         self.naytonleveys = self.lattia.get_width()*20
@@ -18,6 +21,9 @@ class hirvio:
         self.hirvio_x = 0
         self.hirvio_y = 0
         self.hirvio_kulma = 0
+
+        self.hirvio_leveys = self.hirvio_x + self.hirvio.get_width()
+        self.hirvio_korkeus = self.hirvio_y + self.hirvio.get_height()
 
         self.suuntax_vaihtoehdot = [-2,2]
         self.suuntay_vaihtoehdot = [-2.5, 2.5]
@@ -35,9 +41,14 @@ class hirvio:
 
 
 
+# Luodaan olio joilla määrittää näytönleveys ja näytönkorkeus
+
 hirvi = hirvio()
 naytonleveys = hirvi.naytonleveys
 naytonkorkeus = hirvi.naytonkorkeus
+
+
+# Luodaan hirviö-oliot
 
 hirvi1 = hirvio()
 hirvi2 = hirvio()
@@ -50,6 +61,7 @@ hirvi8 = hirvio()
 hirvi9 = hirvio()
 hirvi10 = hirvio()
 
+# Määrittää käytettävät kulmat aloitusympyrässä
 
 kulma = 0.628
 kulma2 = 1.256
@@ -62,6 +74,7 @@ kulma8 = 5.024
 kulma9 = 5.652
 kulma10 = 6.28
 
+# Asettaa hirviön omalle paikalleen aloitusympyrässä, perustuen hirviölle asetetun "kulma"- arvon mukaan.
 
 hirvi1.aseta_hirvion_x_y_ja_kulma(kulma)
 hirvi2.aseta_hirvion_x_y_ja_kulma(kulma2)
@@ -74,18 +87,25 @@ hirvi8.aseta_hirvion_x_y_ja_kulma(kulma8)
 hirvi9.aseta_hirvion_x_y_ja_kulma(kulma9)
 hirvi10.aseta_hirvion_x_y_ja_kulma(kulma10)
 
+# Hirviöt asetettu listaan.
+
 hirviolista = [hirvi1,hirvi2,hirvi3,hirvi4,hirvi5,hirvi6,hirvi7,hirvi8,hirvi9,hirvi10]
 
 class KymmenenHirviota:
 
     def __init__(self):
 
+        # Käynnistä PyGame
         pygame.init()
+
+        # Lataa kuvat tiedostoista
         self.lataa_kuvat()
+
+        # Tee oliot haetuista kuvista.
         self.lattia = self.kuvat["lattia"]
         self.pelaaja = self.kuvat["kohderobo"]
         self.kolikko = self.kuvat["kolikko"]
-        self.hirvio = self.kuvat["hirvio"]
+        self.hirvio = self.kuvat["miniMonstro"]
         
 
         self.pelaajan_liikutus_maara = 2
@@ -102,22 +122,61 @@ class KymmenenHirviota:
 
         self.pelaaja_Y = self.naytonkorkeus//2
         self.pelaaja_X = self.naytonleveys//2
+
+        self.pelaaja_leveys = self.pelaaja_X + self.pelaaja.get_width()
+        self.pelaaja_korkeys = self.pelaaja_Y + self.pelaaja.get_height()
+
         self.kolikko_X = random.randint(0, self.naytonleveys - self.kolikko.get_width()*2)
         self.kolikko_Y = random.randint(0 + self.kolikko.get_height()*2, self.naytonkorkeus-self.kolikko.get_height()*2)
-        # self.hirvio_x = random.randint(0, self.naytonleveys - self.hirvio.get_width())
-        # self.hirvio_y = random.randint(0, self.naytonleveys - self.hirvio.get_height())
 
         self.kello = pygame.time.Clock()
 
-        self.havio = False
-
+        
         self.pisteet = 0
 
-        self.fontti = pygame.font.SysFont("Arial", 24)
+        self.peli_kaynnissa = False
 
-        pygame.display.set_caption("10H")
+        self.havio = False
+
+
+        self.fontti = pygame.font.SysFont("Arial", 30)
+
+        pygame.display.set_caption("MonsterMayhem")
 
         self.silmukka()
+
+    
+    def aloitus_teksti(self): # Poissa käytöstä at, kunnes saadaan toimimaan-
+
+        if self.peli_kaynnissa == False:
+
+            fontti = self.fontti
+            pelataanko_teksti = fontti.render("Press any key to begin", True, (255,0,0))
+            self.naytto.blit(pelataanko_teksti, (350,350))
+        
+        else:
+            pass
+
+
+
+    def onko_peli_käynnissä(self, hirviot: list): # Poissa käytöstä atm kunnes saadaan toimimaan
+
+        if self.peli_kaynnissa == False:
+
+            self.pelaajan_liikutus_maara = 0
+
+            for hirvio in hirviot:
+                hirvio.suuntax = 0
+                hirvio.suuntay = 0
+    
+        elif self.peli_kaynnissa == True:
+
+            self.pelaajan_liikutus_maara = 2
+
+            for hirvio in hirviot:
+
+                hirvio.suuntax = random.choice(self.suuntax_vaihtoehdot)
+                hirvio.suuntay = random.choice(self.suuntay_vaihtoehdot)
 
 
 
@@ -129,89 +188,60 @@ class KymmenenHirviota:
             self.kolikko_Y = random.randint(0 + self.kolikko.get_height(), self.naytonkorkeus)
 
             self.pisteet += 1
+            print(f"Kolikko saatu, kolikoitten määrä on {self.pisteet}")
 
             self.naytto.blit(self.kolikko, (self.kolikko_X, self.kolikko_Y))
         
 
         else:
             self.naytto.blit(self.kolikko, (self.kolikko_X, self.kolikko_Y))
-    
+
 
     def spawnaa_hirviot(self, hirviot: list):
 
 
         for hirvio in hirviot:
             self.naytto.blit(hirvio.hirvio, (hirvio.hirvio_x, hirvio.hirvio_y))
-    
 
-    def häviö(self, hirviot):
+
+    def häviö(self, hirviot: list):
+
+        if self.havio == True:
+
+            self.pelaajan_liikutus_maara = 0
+            
 
         for hirvio in hirviot:
-            if self.pelaaja_X + self.pelaaja.get_width() in range(hirvio.hirvio_x, hirvio.hirvio_x + hirvio.get_width()) and self.pelaaja_Y in range(hirvio.hirvio_y, hirvio.hirvio_y + hirvio.get_height()):
 
-                self.pelaajan_liikutus_maara = 0 #  Pelaaja ei pysty liikkumaan
-                hirvio.suuntax = 0  #   Hirviön x-akselin suuntainen liike nollaantuu
-                hirvio.suuntay = 0  #   Hirviön y-akselin suuntainen liike nollaantuu
+            pyoristetty_hirvio_x = round(hirvio.hirvio_x) # Hirviön X pitää pyöristää kokonaisluvuksi, koska in range funktio ei pysty ottamaan floatteja parametriksi
+            pyoristetty_hirvio_y = round(hirvio.hirvio_y)
 
+            # Ehtoalauseet tarkistamaan osuuko robotti hirviöihin
+
+            if self.pelaaja_X in range(pyoristetty_hirvio_x-5, (pyoristetty_hirvio_x + hirvio.hirvio.get_width())) and self.pelaaja_Y in range(pyoristetty_hirvio_y-5, (pyoristetty_hirvio_y + hirvio.hirvio.get_height()+5)):
                 self.havio = True
+
+            elif (self.pelaaja_X-5 + self.pelaaja.get_width()+5) in range(pyoristetty_hirvio_x, (pyoristetty_hirvio_x + hirvio.hirvio.get_width())) and (self.pelaaja_Y-5 + self.pelaaja.get_height()+5) in range(pyoristetty_hirvio_y-5, (pyoristetty_hirvio_y + hirvio.hirvio.get_height())):
+                self.havio = True
+
 
 
     
     def hävio_tekstit(self):
 
-        häviöteksti = self.fontti.render("Jouduit hirviön runtelemaksi", True, (255,0,0))
-        kolikkojenmäärä = self.fontti.render(f"Sait kerättyä {self.pisteet} kolikkoa", True (255,0,0))
-        uusiyritys = self.fontti.render("Paina välilyöntiä yrittääksesi uudestaan tai 'esc' luovuttaaksesi.")
-
         if self.havio == True:
 
-            self.naytto.blit(häviöteksti, (self.lattia*8, self.lattia*8))
-            self.naytto.blit(kolikkojenmäärä, (self.lattia*8, self.lattia*9))
-            self.naytto.blit(uusiyritys, (self.lattia*8, self.lattia*10))
-    
+            fontti = self.fontti
 
-    def pelataanko_uudestaan(self, hirviot: list):
-        
+            häviöteksti = fontti.render(f"You managed to collect {self.pisteet} coins before meeting your demise", True, (255,0,0))
+            pelataanko_uudestaan_teksti = fontti.render("Press SPACE to try again?", True, (255,0,0))
 
-        if self.havio == True:
-
-            for tapahtuma in pygame.event.get():
-
-                if tapahtuma.type == pygame.KEYDOWN:
-
-                    if tapahtuma.key == K_SPACE:
-
-                        self.pelaajan_liikutus_maara = 2
-                        self.pisteet = 0
-                        self.havio = False
-                        self.pelaaja_Y = self.naytonkorkeus//2
-                        self.pelaaja_X = self.naytonleveys//2
-                        self.spawnaa_kolikko()
-                        self.spawnaa_hirviot()
-
-                        for hirvio in hirviot:
-                            hirvio.suuntax = random.choice(hirvio.suuntax_vaihtoehdot)
-                            hirvio.suuntay = random.choice(hirvio.suuntay_vaihtoehdot)
-                    
-                    if tapahtuma.key == K_ESCAPE:
-                        exit()
-                
-                if tapahtuma.type == pygame.QUIT:
-                    exit()
-        
-
-
-
+            self.naytto.blit(häviöteksti, (175, 300))
+            # self.naytto.blit(pelataanko_uudestaan_teksti, (350,350)) # Poissa käytöstä, kunnes uudestaan aloitus ominaisuus saadaan toimimaan
 
 
         
     def liikuta_hirviota(self, hirvio):
-
-        # hirvio_y = hirvio.hirvio_y
-        # hirvio_x = hirvio.hirvio_x
-        # hirvio = hirvio.hirvio
-        # suuntax = hirvio.suuntax
-        # suuntay = hirvio.suuntay
 
         hirvio.hirvio_x += hirvio.suuntax
         hirvio.hirvio_y += hirvio.suuntay
@@ -219,8 +249,8 @@ class KymmenenHirviota:
 
         if hirvio.hirvio_y + hirvio.hirvio.get_height() >= self.naytonkorkeus:
 
-            hirvio.suuntax = hirvio.suuntax
-            hirvio.suuntay = -hirvio.suuntay
+            hirvio.suuntax = hirvio.suuntax 
+            hirvio.suuntay = -hirvio.suuntay 
         
         if hirvio.hirvio_x + hirvio.hirvio.get_width() >= self.naytonleveys:
             hirvio.suuntax = -hirvio.suuntax
@@ -240,13 +270,9 @@ class KymmenenHirviota:
 
     def piirra_naytto(self):
 
-        self.naytto.fill((200,0,0))
+        self.naytto.fill((0,0,0)) # Muuttaa näytön värin mustaksi
         self.naytto.blit(self.pelaaja, (self.pelaaja_X, self.pelaaja_Y))
-
-
-        # Tuo hirviöt
-        # Tuo kolikko
-
+  
 
 
 
@@ -254,10 +280,12 @@ class KymmenenHirviota:
 
         self.kuvat = {}
 
-        kuvat = ["hirvio", "kohde", "kohderobo", "kolikko", "laatikko", "lattia", "ovi", "robo", "seina"]
+        kuvat = ["hirvio", "kohde", "kohderobo", "kolikko", "laatikko", "lattia", "ovi", "robo", "seina", "miniMonstro"]
+
+        rootPath = "Osa_14_Part_14/osa14-01_pelin_palautus/src/"
 
         for nimi in kuvat:
-            self.kuvat[nimi] = pygame.image.load(nimi + ".png")
+            self.kuvat[nimi] = pygame.image.load(rootPath + nimi + ".png")
     
 
 
@@ -268,6 +296,9 @@ class KymmenenHirviota:
         for tapahtuma in pygame.event.get():
 
             if tapahtuma.type == pygame.KEYDOWN:
+
+                # if tapahtuma.key == ANY_ALL:
+                #     self.peli_kaynnissa = True
 
                 if tapahtuma.key == K_RIGHT:
                     self.oikealle = True
@@ -309,16 +340,19 @@ class KymmenenHirviota:
             
         if self.alas and self.pelaaja_Y + self.pelaaja.get_height() < self.naytonkorkeus:
             self.pelaaja_Y += self.pelaajan_liikutus_maara
-
+                        
 
     def silmukka(self):
         while True:
-            # self.häviö(hirviolista)
-            # self.hävio_tekstit()
+
             self.tutki_tapahtumat()
             self.piirra_naytto()    #   pelaaja blitataan täällä
+            # self.aloitus_teksti()
+            # self.onko_peli_käynnissä(hirviolista)
             self.spawnaa_kolikko()
             self.spawnaa_hirviot(hirviolista)
+            self.häviö(hirviolista)
+            self.hävio_tekstit()
             self.liikuta_hirviota(hirvi1)
             self.liikuta_hirviota(hirvi2)
             self.liikuta_hirviota(hirvi3)
@@ -336,28 +370,4 @@ class KymmenenHirviota:
             
 
 peli = KymmenenHirviota()
-
-
-# pygame.init()
-
-# naytto = pygame.display.set_mode((640,480))
-
-# naytto.fill((0,0,0))
-
-# kuva = pygame.image.load("kohderobo.png")
-
-# kuva_leveys = kuva.get_width()
-# kuva_korkeus = kuva.get_height()
-
-# for i in range(0,1000):
-
-#     naytto.blit(kuva,(random.randint(0, 640-kuva_leveys), random.randint(0 , 480-kuva_korkeus)))
-
-# pygame.display.flip()
-
-# while True:
-    
-#     for tapahtuma in pygame.event.get():
-#         if tapahtuma.type == pygame.QUIT:
-#             exit()
 

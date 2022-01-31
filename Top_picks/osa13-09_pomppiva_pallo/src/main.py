@@ -9,28 +9,15 @@ pygame.init()
 
 naytto = pygame.display.set_mode((640,480))
 
-pallo = pygame.image.load("pallo.png")
+pallo = pygame.image.load("Top_picks\osa13-09_pomppiva_pallo\src\pallo.png")
 
-# kulma = 0
 
-suuntax_vaihtoehdot = [-1, 1]
-suuntay_vaihtoehdot = [-1.25, 1,25]
+suuntax_vaihtoehdot = [-1, 1, -2, 2]
+suuntay_vaihtoehdot = [-1, 1, -2.25, 2,25]
 
 suuntax = random.choice(suuntax_vaihtoehdot)
 suuntay = random.choice(suuntay_vaihtoehdot)
 
-# randomx = []
-# randomy = []
-
-# for i in range(10,640-pallo.get_width()):
-#     randomx.append(i)
-
-# for i in range(10,480-pallo.get_height()):
-#     randomy.append(i)
-
-
-# x = random.choice(randomx)
-# y = random.choice(randomy)
 
 x = random.randint(10, 640-pallo.get_width())
 y = random.randint(10, 480-pallo.get_height())
@@ -69,4 +56,4 @@ while True:
         suuntax = -suuntax
         suuntay = suuntay
 
-    kello.tick(1000)
+    kello.tick(300)

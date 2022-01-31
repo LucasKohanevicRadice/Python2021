@@ -13,7 +13,7 @@ def spellchecker_v2():
     korjattusyote = ""
     sanalista = []
 
-    with open("wordlist.txt") as tiedosto:
+    with open("Top_picks\osa07-16_spellchecker_versio2\src\wordlist.txt") as tiedosto:
 
         for rivi in tiedosto:
             rivi = rivi.strip()
@@ -29,7 +29,7 @@ def spellchecker_v2():
         if sana not in sanalista:
             vääräsana = sana
             korjattusyote += f"*{vääräsana}*" + " "
-            korjauskehotus += f"{vääräsana}: {get_close_matches(vääräsana,sanalista, n=3)}\n"
+            korjauskehotus += f"{vääräsana}: {get_close_matches(vääräsana,sanalista, n=5)}\n"
 
         else:
             korjattusyote += sana + " "
@@ -39,5 +39,6 @@ def spellchecker_v2():
     print(korjattusyote)
     print()
     print(korjauskehotus)
+
 
 spellchecker_v2()
