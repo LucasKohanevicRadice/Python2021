@@ -5,12 +5,12 @@ import string
 
 def spellchecker_v2():
 
-    for i in range(1,3):
-        print()
+    print()
     syote = input("Write a text in english: ")
     syote = syote.lower()
 
     korjattusyote = ""
+    korjauskehotus = f"korjausehdotukset: \n"
     sanalista = []
 
     with open("Top_picks\osa07-16_spellchecker_versio2\src\wordlist.txt") as tiedosto:
@@ -21,9 +21,7 @@ def spellchecker_v2():
             sanalista.append(rivi)
     
     sanat = syote.split(" ")
-
-    korjauskehotus = f"korjausehdotukset: \n"
-    
+  
 
     for sana in sanat:
         if sana not in sanalista:
@@ -33,12 +31,14 @@ def spellchecker_v2():
 
         else:
             korjattusyote += sana + " "
-    korjattusyote = korjattusyote.strip()
+
 
     print()
     print(korjattusyote)
     print()
     print(korjauskehotus)
+    print()
+
 
 
 spellchecker_v2()

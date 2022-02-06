@@ -213,7 +213,7 @@ def sovellus_main():
 # 123456789012345678901234567890123456789
 
 
-data.tiedostonpurkaja("kaikki.json")
+data.tiedostonpurkaja("Top_picks\osa12-15_tilastot_ojennukseen\src\kaikki.json")
 sovellus_main()
 
 # print(pelaajatiedot("Travis Zajac"))
