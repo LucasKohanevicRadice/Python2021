@@ -302,9 +302,6 @@ class KymmenenHirviota:
 
             if tapahtuma.type == pygame.KEYDOWN:
 
-                # if tapahtuma.key == ANY_ALL:
-                #     self.peli_kaynnissa = True
-
                 if tapahtuma.key == K_RIGHT:
                     self.oikealle = True
                 
@@ -352,8 +349,6 @@ class KymmenenHirviota:
 
             self.tutki_tapahtumat()
             self.piirra_naytto()    #   pelaaja blitataan täällä
-            # self.aloitus_teksti()
-            # self.onko_peli_käynnissä(hirviolista)
             self.spawnaa_kolikko()
             self.spawnaa_hirviot(hirviolista)
             self.häviö(hirviolista)
