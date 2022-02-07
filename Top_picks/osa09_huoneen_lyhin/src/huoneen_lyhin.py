@@ -28,9 +28,6 @@ class Huone:
         elif len(self.hlo_lista) > 0:
             return False
 
-        # elif len(self.hlo_lista) < 0:
-        #     raise ValueError("Huoneessa ei voi olla negatiivista määrää ihmisiä dumdum")
-
     def tulosta_tiedot(self):
 
         yhteispituus = 0
