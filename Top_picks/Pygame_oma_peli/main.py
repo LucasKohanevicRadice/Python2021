@@ -297,6 +297,7 @@ class KymmenenHirviota:
 
     def tutki_tapahtumat(self):
 
+        #   Tutkii pelaajan liikkeitä
 
         for tapahtuma in pygame.event.get():
 
@@ -330,6 +331,8 @@ class KymmenenHirviota:
             
             if tapahtuma.type == pygame.QUIT:
                 exit()
+
+        # Liikkuuttaa robottia painettujen näppäimien mukaan
 
         if self.oikealle and self.pelaaja_X + self.pelaaja.get_width() < self.naytonleveys:
             self.pelaaja_X += self.pelaajan_liikutus_maara
