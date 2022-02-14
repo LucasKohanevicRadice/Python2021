@@ -1,6 +1,3 @@
-# TEE RATKAISUSI TÄHÄN:
-
-
 import pygame
 import math
 import random
@@ -21,7 +18,6 @@ suuntay = random.choice(suuntay_vaihtoehdot)
 
 x = random.randint(10, 640-pallo.get_width())
 y = random.randint(10, 480-pallo.get_height())
-
 
 
 kello = pygame.time.Clock()
